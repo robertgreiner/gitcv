@@ -1,0 +1,37 @@
+﻿@using gitcv.Models.Types
+@model dynamic
+
+@{
+    Layout = null;
+    GithubUser user = ViewBag.User;
+    List<GithubRepository> repos = ViewBag.Repos;
+}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>gitcv</title>
+    </head>
+    <body>
+        <div>
+            <img src="http://www.gravatar.com/avatar/@user.gravatar_id?s=120" alt="@user.name Profile Picture"/>
+            <ul>
+                <li>User Name: @user.name</li>    
+                <li>Public Repositories: @user.public_repos</li>
+                <li>Blog: @user.blog</li>
+                <li>Location: @user.location</li>
+            </ul>
+            <h2>Bio</h2>
+            <p>
+                @user.bio
+            </p>
+            @{
+                if (user.hireable)
+                {
+                    <p><strong>This person is looking for a new job.</strong></p>
+                }
+            }
+        </div>
+    </body>
+</html>

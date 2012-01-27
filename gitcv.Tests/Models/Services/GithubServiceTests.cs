@@ -22,7 +22,6 @@ namespace gitcv.Tests.Models.Services
         public void ShouldReturnRepositoryInformation()
         {
             var repos = GithubService.GetRepositories("robertgreiner");
-
             Assert.IsNotEmpty(repos.First().clone_url);
             Assert.AreEqual("robertgreiner", repos.First().owner.login);
         }
