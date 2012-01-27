@@ -13,7 +13,7 @@ namespace gitcv.Tests.Models.Services
     class GithubServiceTests
     {
         [Test]
-        public void ShouldReturnUserLoginNamet()
+        public void ShouldReturnUserLoginName()
         {
             var request = WebRequest.Create("https://api.github.com/users/robertgreiner") as HttpWebRequest;
             var response = request.GetResponse() as HttpWebResponse;
