@@ -20,11 +20,15 @@
                 <li>User Name: @user.name</li>    
                 <li>Public Repositories: @user.public_repos</li>
                 <li>Blog: @user.blog</li>
+                <li>Followers: @user.followers</li>
                 <li>Location: @user.location</li>
             </ul>
             <h2>Bio</h2>
             <p>
-                @user.bio
+                @{
+                    var md = new MarkdownSharp.Markdown();
+                    @Html.Raw(md.Transform(user.bio));
+                }
             </p>
             @{
                 if (user.hireable)
