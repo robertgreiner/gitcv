@@ -2,40 +2,56 @@
 @model dynamic
 
 @{
-    Layout = null;
     GithubUser user = ViewBag.User;
     List<GithubRepository> repos = ViewBag.Repos;
 }
 
-<!DOCTYPE html>
-
-<html>
-    <head>
-        <title>gitcv</title>
-    </head>
-    <body>
-        <div>
-            <img src="http://www.gravatar.com/avatar/@user.gravatar_id?s=120" alt="@user.name Profile Picture"/>
-            <ul>
-                <li>User Name: @user.name</li>    
-                <li>Public Repositories: @user.public_repos</li>
-                <li>Blog: @user.blog</li>
-                <li>Followers: @user.followers</li>
-                <li>Location: @user.location</li>
-            </ul>
-            <h2>Bio</h2>
-            <p>
-                @{
-                    var md = new MarkdownSharp.Markdown();
-                    @Html.Raw(md.Transform(user.bio));
-                }
-            </p>
-            @{
-                if (user.hireable)
-                {
-                    <p><strong>This person is looking for a new job.</strong></p>
-                }
-            }
+<div id="topNav">
+    <div class="fixed">
+        <div class="wrapper">
+            <div class="welcome"><img src="http://www.gravatar.com/avatar/@user.gravatar_id?s=22" alt="Profile Picture" /><span>@user.login</span></div>
+            <div class="userNav">
+                <ul>
+                    <li><a href="@user.html_url" title=""><img src="@Url.Content("~/Content/images/icons/topnav/profile.png")" alt="" /><span>View Profile</span></a></li>
+                    <li><a href="" title=""><img src="@Url.Content("~/Content/images/icons/topnav/logout.png")" alt="" /><span>Search</span></a></li>
+                </ul>
+            </div>
+            <div class="fix"></div>
         </div>
-    </body>
-</html>
+    </div>
+</div>
+
+<div id="header" class="wrapper">
+    <div class="logo"><a href="/" title=""><img src="@Url.Content("~/Content/images/loginLogo.png")" alt="" /></a></div>
+    <div class="middleNav">
+        <ul>
+            <li class="iUser"><a href="#" title=""><span>Followers</span></a></li>
+        </ul>
+    </div>
+    <div class="fix"></div>
+</div>
+
+<div class="wrapper">
+    <div class="leftNav">
+        <ul id="menu">
+            <li class="dash"><a href="" title="" class="active"><span>Github Activity</span></a></li>
+            <li class="graphs"><a href="" title=""><span>Commit History</span></a></li>
+            <li class="login"><a href="" title=""><span>View Profile</span></a></li>
+            <li class="contacts"><a href="" title=""><span>Followers</span></a></li>
+        </ul>
+    </div>
+    
+    <div class="content">
+        <div class="title"><h5>Github Activity</h5></div>
+        <div class="stats">
+            <ul>
+                <li><a href="#" class="count grey" title="Public Repository count">@user.public_repos</a><span>Public Repositories</span></li>
+                <li><a href="#" class="count grey" title="Public Gist count">@user.public_gists</a><span>Public Gists</span></li>
+                <li><a href="#" class="count grey" title="Number of People following">@user.following</a><span>Following</span></li>
+                <li class="last"><a href="#" class="count grey" title="Number of Followers">@user.followers</a><span>Followers</span></li>
+            </ul>
+            <div class="fix"></div>
+        </div>
+    </div>
+</div>
+<div class="fix"></div>
