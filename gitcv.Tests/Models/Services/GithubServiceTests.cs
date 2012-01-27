@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net;
 using System.Text;
 using NUnit.Framework;
-using System.Runtime.Serialization.Json;
-using gitcv.Models.Types;
+using gitcv.Models.Services;
 
 namespace gitcv.Tests.Models.Services
 {
@@ -15,16 +12,8 @@ namespace gitcv.Tests.Models.Services
         [Test]
         public void ShouldReturnUserLoginName()
         {
-            var request = WebRequest.Create("https://api.github.com/users/robertgreiner") as HttpWebRequest;
-            var response = request.GetResponse() as HttpWebResponse;
-            var receiveStream = response.GetResponseStream();
-
-            var serializer = new DataContractJsonSerializer(typeof(GithubUser));
-            var user = (GithubUser) serializer.ReadObject(receiveStream);
-
+            var user = GithubService.GetBasicUserInformation("robertgreiner");
             Assert.AreEqual("robertgreiner", user.login);
-
-            response.Close();
         }
     }
 }
