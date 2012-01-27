@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Runtime.Serialization.Json;
@@ -12,7 +13,7 @@ namespace gitcv.Models.Services
             
         }
 
-        public static GithubUser GetBasicUserInformation(string userName)
+        public static GithubUser GetUser(string userName)
         {
             var uri = string.Format("https://api.github.com/users/{0}", userName);
             var stream = MakeRequest(uri);
@@ -20,6 +21,16 @@ namespace gitcv.Models.Services
             var user = (GithubUser)serializer.ReadObject(stream);
             stream.Close();
             return user;
+        }
+
+        public static List<GithubRepository> GetRepositories(string userName)
+        {
+            var uri = string.Format("https://api.github.com/users/{0}/repos", userName);
+            var stream = MakeRequest(uri);
+            var serializer = new DataContractJsonSerializer(typeof(List<GithubRepository>));
+            var repos = (List<GithubRepository>)serializer.ReadObject(stream);
+            stream.Close();
+            return repos;
         }
 
         private static Stream MakeRequest(string uri)
