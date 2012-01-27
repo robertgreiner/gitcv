@@ -12,30 +12,8 @@ namespace gitcv.Tests.Models.Services
     [TestFixture]
     class GithubServiceTests
     {
-
         [Test]
-        public void ShouldReturnUserSpecificContentOnValidGithubUsername()
-        {
-            var request = WebRequest.Create("https://api.github.com/users/robertgreiner") as HttpWebRequest;
-            var response = request.GetResponse() as HttpWebResponse;
-            response.Close();
-            Assert.IsTrue(response.ContentLength > 12);
-        }
-
-        [Test]
-        public void ShouldReturnGithubUsernameWithBasicGithubUserSearch()
-        {
-            var request = WebRequest.Create("https://api.github.com/users/robertgreiner") as HttpWebRequest;
-            var response = request.GetResponse() as HttpWebResponse;
-            var receiveStream = response.GetResponseStream();
-            var readStream = new StreamReader(receiveStream, Encoding.UTF8);
-            var stream = readStream.ReadToEnd();
-            response.Close();   
-            Assert.IsTrue(stream.Contains("\"login\":\"robertgreiner\""));
-        }
-
-        [Test]
-        public void ShouldReturnPublicRepoCount()
+        public void ShouldReturnUserLoginNamet()
         {
             var request = WebRequest.Create("https://api.github.com/users/robertgreiner") as HttpWebRequest;
             var response = request.GetResponse() as HttpWebResponse;
