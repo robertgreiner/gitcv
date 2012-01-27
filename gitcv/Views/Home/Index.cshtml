@@ -2,6 +2,7 @@
 @model dynamic
 
 @{
+    ViewBag.Title = "GitCV - Helping you hire the best developers.";
     GithubUser user = ViewBag.User;
     List<GithubRepository> repos = ViewBag.Repos;
 }
@@ -13,7 +14,7 @@
             <div class="userNav">
                 <ul>
                     <li><a href="@user.html_url" title=""><img src="@Url.Content("~/Content/images/icons/topnav/profile.png")" alt="" /><span>View Profile</span></a></li>
-                    <li><a href="" title=""><img src="@Url.Content("~/Content/images/icons/topnav/logout.png")" alt="" /><span>Search</span></a></li>
+                    <li><a href="/" title=""><img src="@Url.Content("~/Content/images/icons/topnav/logout.png")" alt="" /><span>Search</span></a></li>
                 </ul>
             </div>
             <div class="fix"></div>
@@ -25,7 +26,7 @@
     <div class="logo"><a href="/" title=""><img src="@Url.Content("~/Content/images/loginLogo.png")" alt="" /></a></div>
     <div class="middleNav">
         <ul>
-            <li class="iUser"><a href="#" title=""><span>Followers</span></a></li>
+            <li class="iUser"><a href="https://github.com/@user.login/followers" title=""><span>Followers</span></a></li>
         </ul>
     </div>
     <div class="fix"></div>
@@ -34,10 +35,9 @@
 <div class="wrapper">
     <div class="leftNav">
         <ul id="menu">
-            <li class="dash"><a href="" title="" class="active"><span>Github Activity</span></a></li>
-            <li class="graphs"><a href="" title=""><span>Commit History</span></a></li>
-            <li class="login"><a href="" title=""><span>View Profile</span></a></li>
-            <li class="contacts"><a href="" title=""><span>Followers</span></a></li>
+            <li class="dash"><a href="#" title="" class="active"><span>Github Activity</span></a></li>
+            <li class="login"><a href="@user.html_url" title=""><span>View Profile</span></a></li>
+            <li class="contacts"><a href="https://github.com/@user.login/followers" title=""><span>Followers</span></a></li>
         </ul>
     </div>
     
