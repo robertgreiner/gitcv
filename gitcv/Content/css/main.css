@@ -64,7 +64,7 @@ p { padding: 12px 0 0 0; }
 
 /* ==========  Login page  ========== */
 
-.loginPanel { width: 320px; background: #fafafa; border: 1px solid #d5d5d5; border-top: 0; display: block; height: 212px; }
+.loginPanel { width: 320px; background: #fafafa; border: 1px solid #d5d5d5; border-top: 0; display: block; height: 140px; }
 .loginWrapper { margin: -106px 0 0 -160px; position: absolute; top: 50%; left: 50%; }
 .loginLogo { position: absolute; width: 190px; height: 44px; display: block; top: -80px; left: 50%; margin-left: -95px; } 
 .loginPanel h5 { font-weight: normal; padding: 9px 12px 9px 35px; float: left; } 
