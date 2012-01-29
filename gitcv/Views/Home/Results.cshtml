@@ -1,4 +1,5 @@
 ﻿@using gitcv.Models.Types
+
 @{
     ViewBag.Title = "GitCV - Helping you hire the best developers.";
     GithubUser user = ViewBag.User;
@@ -71,8 +72,44 @@
                         </h5>
                     </div>
                     <div class="body">
-                        <div id="languagesGraph" style="width: 600px; height: 300px;"></div>
+                        <div id="languageChart" style="width: 600px; height: 300px;">
+                        </div>
+                        
+
                         <script type="text/javascript">
+                            
+                            var data = [];
+                            
+                            for (var i = 0; i < 4; i++) {
+                                data[i] = { label: "Series" + (i + 1), data: Math.floor(Math.random() * 100) + 1 };
+                            }
+
+                            $.plot($("#languageChart"), data,
+                                {
+                                    series: {
+                                        pie: {
+                                            show: true,
+                                            radius: 1,
+                                            label: {
+                                                show: true,
+                                                radius: 2 / 3,
+                                                formatter: function (label, series) {
+                                                    return '<div style="font-size:11px;text-align:center;padding:2px;color:white;">' + label + '<br/>' + Math.round(series.percent) + '%</div>';
+                                                },
+                                                threshold: 0.1
+                                            }
+                                        }
+                                    },
+                                    legend: {
+                                        show: false
+                                    },
+                                    grid: {
+                                        hoverable: false,
+                                        clickable: true
+                                    }
+                                });
+                            $("#interactive").bind("plothover", pieHover);
+                            $("#interactive").bind("plotclick", pieClick);
 
                         </script>
                     </div>
