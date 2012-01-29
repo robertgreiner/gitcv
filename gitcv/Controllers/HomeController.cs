@@ -10,15 +10,24 @@ namespace gitcv.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index(string loginName)
+        public ActionResult Index()
         {
+            
             return View();         
         }
 
         [HttpPost]
         public ActionResult Index(FormCollection collection)
         {
-            return new RedirectResult(collection["loginName"]);
+            var loginName = collection["loginName"];
+
+            if (String.IsNullOrEmpty(loginName))
+            {
+                ViewBag.ErrorMessage = "Please enter a github username.";
+                return View("Index");
+            }
+
+            return new RedirectResult(loginName);
         }
 
         public ActionResult Results(string loginName)
@@ -33,8 +42,10 @@ namespace gitcv.Controllers
             }
             catch
             {
+                ViewBag.ErrorMessage = "Sorry, that user doesn't exist on Github, please try again.";
+                return View("Index");  
             }
-
+            
             ViewBag.User = user;
             ViewBag.Repositories = repos;
 

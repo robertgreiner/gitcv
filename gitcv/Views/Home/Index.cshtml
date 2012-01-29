@@ -2,17 +2,16 @@
 @model dynamic
 @{
     ViewBag.Title = "GitCV - Helping you hire the best developers.";
-    GithubUser user = ViewBag.User;
-    List<GithubRepository> repos = ViewBag.Repos;
 }
 <div class="loginWrapper">
     <div class="loginLogo">
         <img src="@Url.Content("~/Content/images/loginLogo.png")" alt="" /></div>
     @{
-        if (IsPost)
+        if (!String.IsNullOrEmpty(ViewBag.ErrorMessage))
         {
         <p style="margin-bottom: 20px; color: #FF0000;">
-            Sorry, that user doesn't exist on Github, please try again.</p>
+            @ViewBag.ErrorMessage    
+        </p>
         <div class="fix">
         </div>
         }
