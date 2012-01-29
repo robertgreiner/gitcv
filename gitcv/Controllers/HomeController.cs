@@ -12,6 +12,17 @@ namespace gitcv.Controllers
     {
         public ActionResult Index(string loginName)
         {
+            return View();         
+        }
+
+        [HttpPost]
+        public ActionResult Index(FormCollection collection)
+        {
+            return new RedirectResult(collection["loginName"]);
+        }
+
+        public ActionResult Results(string loginName)
+        {
             var user = new GithubUser();
             var repos = new List<GithubRepository>();
 
@@ -26,14 +37,8 @@ namespace gitcv.Controllers
 
             ViewBag.User = user;
             ViewBag.Repositories = repos;
+
             return View();
         }
-
-        [HttpPost]
-        public ActionResult Index(FormCollection collection)
-        {
-            return new RedirectResult(collection["loginName"]);
-        }
-
     }
 }

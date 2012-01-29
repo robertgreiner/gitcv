@@ -22,9 +22,15 @@ namespace gitcv
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                "Default", // Route name
-                "{loginName}", // URL with parameters
-                new { controller = "Home", action = "Index", loginName = UrlParameter.Optional } // Parameter defaults
+               "Search",
+               "",
+               new { controller = "Home", action = "Index", loginName = "" }
+           );
+
+            routes.MapRoute(
+                "Results",
+                "{loginName}",
+                new { controller = "Home", action = "Results", loginName = UrlParameter.Optional }
             );
 
         }

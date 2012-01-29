@@ -1,89 +1,40 @@
 ﻿@using gitcv.Models.Types
 @model dynamic
-
 @{
     ViewBag.Title = "GitCV - Helping you hire the best developers.";
     GithubUser user = ViewBag.User;
     List<GithubRepository> repos = ViewBag.Repos;
 }
-
-@{
-    if (String.IsNullOrEmpty(user.login))
-    {   
-        <div class="loginWrapper">
-            <div class="loginLogo"><img src="@Url.Content("~/Content/images/loginLogo.png")" alt="" /></div>
-            @{
-                if (IsPost)
-                {
-                    <p style="margin-bottom: 20px; color: #FF0000;">Sorry, that user doesn't exist on Github, please try again.</p>
-                    <div class="fix"></div>
-                }
-            }
-            <div class="loginPanel">
-                <div class="head"><h5 class="iUser">Github User Search</h5></div>
-                @using (FormExtensions.BeginForm(Html))
-                {
-                    <fieldset>
-                        <div class="loginRow noborder mainForm">
-                            <label for="req1">Username:</label>
-                            <div class="loginInput"><input type="text" name="loginName" class="validate[required]" id="loginName" /></div>
-                            <div class="fix"></div>
-                            <input style="margin-top: 16px;" type="submit" value="Search" class="greyishBtn submitForm" />
-                        </div>
-                    </fieldset>
-                }
-            </div>
+<div class="loginWrapper">
+    <div class="loginLogo">
+        <img src="@Url.Content("~/Content/images/loginLogo.png")" alt="" /></div>
+    @{
+        if (IsPost)
+        {
+        <p style="margin-bottom: 20px; color: #FF0000;">
+            Sorry, that user doesn't exist on Github, please try again.</p>
+        <div class="fix">
         </div>
+        }
     }
-    else
-    {
-        <div id="topNav">
-            <div class="fixed">
-                <div class="wrapper">
-                    <div class="welcome"><img src="http://www.gravatar.com/avatar/@user.gravatar_id?s=22" alt="Profile Picture" /><span>@user.login</span></div>
-                    <div class="userNav">
-                        <ul>
-                            <li><a href="@user.html_url" title=""><img src="@Url.Content("~/Content/images/icons/topnav/profile.png")" alt="" /><span>View Profile</span></a></li>
-                            <li><a href="/" title=""><img src="@Url.Content("~/Content/images/icons/topnav/logout.png")" alt="" /><span>Search</span></a></li>
-                        </ul>
+    <div class="loginPanel">
+        <div class="head">
+            <h5 class="iUser">
+                Github User Search</h5>
+        </div>
+        @using (FormExtensions.BeginForm(Html))
+        {
+            <fieldset>
+                <div class="loginRow noborder mainForm">
+                    <label for="req1">
+                        Username:</label>
+                    <div class="loginInput">
+                        <input type="text" name="loginName" class="validate[required]" id="loginName" /></div>
+                    <div class="fix">
                     </div>
-                    <div class="fix"></div>
+                    <input style="margin-top: 16px;" type="submit" value="Search" class="greyishBtn submitForm" />
                 </div>
-            </div>
-        </div>
-
-        <div id="header" class="wrapper">
-            <div class="logo"><a href="/" title=""><img src="@Url.Content("~/Content/images/loginLogo.png")" alt="" /></a></div>
-            <div class="middleNav">
-                <ul>
-                    <li class="iUser"><a href="https://github.com/@user.login/followers" title=""><span>Followers</span></a></li>
-                </ul>
-            </div>
-            <div class="fix"></div>
-        </div>
-
-        <div class="wrapper">
-            <div class="leftNav">
-                <ul id="menu">
-                    <li class="dash"><a href="#" title="" class="active"><span>Github Activity</span></a></li>
-                    <li class="login"><a href="@user.html_url" title=""><span>View Profile</span></a></li>
-                    <li class="contacts"><a href="https://github.com/@user.login/followers" title=""><span>Followers</span></a></li>
-                </ul>
-            </div>
-    
-            <div class="content">
-                <div class="title"><h5>Github Activity</h5></div>
-                <div class="stats">
-                    <ul>
-                        <li><a href="#" class="count grey" title="Public Repository count">@user.public_repos</a><span>Public Repositories</span></li>
-                        <li><a href="#" class="count grey" title="Public Gist count">@user.public_gists</a><span>Public Gists</span></li>
-                        <li><a href="#" class="count grey" title="Number of People following">@user.following</a><span>Following</span></li>
-                        <li class="last"><a href="#" class="count grey" title="Number of Followers">@user.followers</a><span>Followers</span></li>
-                    </ul>
-                    <div class="fix"></div>
-                </div>
-            </div>
-        </div>
-        <div class="fix"></div>        
-    }
-}
+            </fieldset>
+        }
+    </div>
+</div>
