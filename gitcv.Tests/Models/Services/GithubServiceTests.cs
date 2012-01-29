@@ -25,5 +25,12 @@ namespace gitcv.Tests.Models.Services
             Assert.IsNotEmpty(repos.First().clone_url);
             Assert.AreEqual("robertgreiner", repos.First().owner.login);
         }
+
+        [Test]
+        public void ShouldGetRepositoryLanguages()
+        {
+            var languages = GithubService.GetLanguages("robertgreiner");
+            Assert.IsTrue(languages.Count > 3);
+        }
     }
 }

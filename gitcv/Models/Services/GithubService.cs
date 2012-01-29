@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -32,6 +33,30 @@ namespace gitcv.Models.Services
             stream.Close();
             return repos;
         }
+
+        public static Dictionary<string, int> GetLanguages(string userName)
+        {
+            var repos = GithubService.GetRepositories(userName);
+
+            var languages = new Dictionary<string, int>();
+            foreach (var repo in repos)
+            {
+                if (String.IsNullOrEmpty(repo.language))
+                {
+                    repo.language = "Other";
+                }
+
+                if (!languages.ContainsKey(repo.language))
+                {
+                    languages.Add(repo.language, 1);
+                }
+                else
+                {
+                    languages[repo.language]++;
+                }
+            }
+            return languages;
+        } 
 
         private static Stream MakeRequest(string uri)
         {
