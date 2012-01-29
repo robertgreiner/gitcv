@@ -32,21 +32,7 @@ namespace gitcv.Controllers
         [HttpPost]
         public ActionResult Index(FormCollection collection)
         {
-            var user = new GithubUser();
-            var repos = new List<GithubRepository>();
-
-            try
-            {
-                user = GithubService.GetUser(collection["loginName"]);
-                repos = GithubService.GetRepositories(collection["loginName"]);
-            }
-            catch
-            {
-            }
-
-            ViewBag.User = user;
-            ViewBag.Repositories = repos;
-            return View();
+            return new RedirectResult(collection["loginName"]);
         }
 
     }
