@@ -29,8 +29,8 @@
             <img src="@Url.Content("~/Content/images/loginLogo.png")" alt="" /></a></div>
     <div class="middleNav">
         <ul>
-            <li class="iUser"><a href="https://github.com/@user.login/followers" target="_blank" title=""><span>
-                Followers</span></a></li>
+            <li class="iUser"><a href="https://github.com/@user.login/followers" target="_blank" title="">
+                <span>Followers</span></a></li>
         </ul>
     </div>
     <div class="fix">
@@ -41,8 +41,8 @@
         <ul id="menu">
             <li class="dash"><a href="#" title="" class="active"><span>Github Activity</span></a></li>
             <li class="login"><a href="@user.html_url" title="" target="_blank"><span>View Profile</span></a></li>
-            <li class="contacts"><a href="https://github.com/@user.login/followers" title="" target="_blank" ><span>
-                Followers</span></a></li>
+            <li class="contacts"><a href="https://github.com/@user.login/followers" title="" target="_blank" >
+                <span>Followers</span></a></li>
         </ul>
     </div>
     <div class="content">
@@ -53,43 +53,101 @@
         <div class="stats">
             <ul>
                 <li><a href="#" class="count grey" title="Public Repository count">@user.public_repos</a><span>Public
-                                                                                                             Repositories</span></li>
+                    Repositories</span></li>
                 <li><a href="#" class="count grey" title="Public Gist count">@user.public_gists</a><span>Public
-                                                                                                       Gists</span></li>
+                    Gists</span></li>
                 <li><a href="#" class="count grey" title="Number of People following">@user.following</a><span>Following</span></li>
                 <li class="last"><a href="#" class="count grey" title="Number of Followers">@user.followers</a><span>Followers</span></li>
             </ul>
             <div class="fix">
             </div>
         </div>
-        
+        <div class="widgets">
+            <div class="left">
+                <div class="widget">
+                    <div class="head">
+                        <h5 class="iChart8">
+                            Languages
+                        </h5>
+                    </div>
+                    <div class="body">
+                        <div id="languagesGraph" style="width: 600px; height: 300px;"></div>
+                        <script type="text/javascript">
+
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="widget">
+                    <div class="head">
+                        <h5 class="iCreate">
+                            Bio</h5>
+                    </div>
+                    <div class="body">
+                        <p>
+                            @{
+                                var md = new MarkdownSharp.Markdown();
+                                @Html.Raw(md.Transform(user.bio));
+                            }
+                        </p>
+                    </div>
+                </div>
+                @{
+                    if (@user.hireable)
+                    {
+                    <blockquote>
+                        @user.name is currently seeking a new job. <a href="@user.html_url">Get in touch.</a>
+                    </blockquote>       
+                    }
+                }
+            </div>
+        </div>
+        <div class="fix">
+        </div>
         <div class="widget">
-            <div class="head"><h5 class="iFrames">Public Repositories</h5></div>
+            <div class="head">
+                <h5 class="iFrames">
+                    Public Repositories</h5>
+            </div>
             <table cellpadding="0" cellspacing="0" width="100%" class="tableStatic resize">
                 <thead>
                     <tr>
-                        <td>Name</td>
-                        <td>Description</td>
-                        <td>Language</td>
-                        <td>Homepage</td>
+                        <td>
+                            Name
+                        </td>
+                        <td>
+                            Description
+                        </td>
+                        <td>
+                            Language
+                        </td>
+                        <td>
+                            Homepage
+                        </td>
                     </tr>
                 </thead>
                 <tbody>
                     @{                        
                         foreach (var repo in repos)
                         {
-                            <tr>
-                                <td><a href="@repo.html_url" target="_blank">@repo.name</a></td>
-                                <td>@repo.description</td>
-                                <td>@repo.language</td>
-                                <td><a href="@repo.homepage" target="_blank">@repo.homepage</a></td>
-                            </tr>
+                        <tr>
+                            <td>
+                                <a href="@repo.html_url" target="_blank">@repo.name</a>
+                            </td>
+                            <td>@repo.description
+                            </td>
+                            <td>@repo.language
+                            </td>
+                            <td>
+                                <a href="@repo.homepage" target="_blank">@repo.homepage</a>
+                            </td>
+                        </tr>
                         }
                     }
                 </tbody>
             </table>
         </div>
-
     </div>
 </div>
 <div class="fix">

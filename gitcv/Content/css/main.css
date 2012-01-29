@@ -30,8 +30,6 @@ h5 { font-size: 16px; }
 h6 { font-size: 14px; }
 
 blockquote { border : 1px solid #d5d5d5; margin-top: 40px; padding: 15px 10px; quotes: "\201C" "\201D"; background: #fafafa; text-align: center; font-style: italic; font-size: 12px; border-left: 4px solid #d5d5d5; }
-blockquote:before { content: open-quote; font-weight: bold; }
-blockquote:after { content: close-quote; font-weight: bold; }
 
 .red { color: #B55D5C; }
 .green { color: #2a8827; }
