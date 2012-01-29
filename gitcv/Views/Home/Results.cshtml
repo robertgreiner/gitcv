@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "GitCV - Helping you hire the best developers.";
     GithubUser user = ViewBag.User;
-    List<GithubRepository> repos = ViewBag.Repos;
+    List<GithubRepository> repos = ViewBag.Repositories;
 }
 <div id="topNav">
     <div class="fixed">
@@ -53,15 +53,43 @@
         <div class="stats">
             <ul>
                 <li><a href="#" class="count grey" title="Public Repository count">@user.public_repos</a><span>Public
-                    Repositories</span></li>
+                                                                                                             Repositories</span></li>
                 <li><a href="#" class="count grey" title="Public Gist count">@user.public_gists</a><span>Public
-                    Gists</span></li>
+                                                                                                       Gists</span></li>
                 <li><a href="#" class="count grey" title="Number of People following">@user.following</a><span>Following</span></li>
                 <li class="last"><a href="#" class="count grey" title="Number of Followers">@user.followers</a><span>Followers</span></li>
             </ul>
             <div class="fix">
             </div>
         </div>
+        
+        <div class="widget">
+            <div class="head"><h5 class="iFrames">Public Repositories</h5></div>
+            <table cellpadding="0" cellspacing="0" width="100%" class="tableStatic resize">
+                <thead>
+                    <tr>
+                        <td>Name</td>
+                        <td>Description</td>
+                        <td>Language</td>
+                        <td>Homepage</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{                        
+                        foreach (var repo in repos)
+                        {
+                            <tr>
+                                <td><a href="@repo.html_url" target="_blank">@repo.name</a></td>
+                                <td>@repo.description</td>
+                                <td>@repo.language</td>
+                                <td><a href="@repo.homepage" target="_blank">@repo.homepage</a></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+
     </div>
 </div>
 <div class="fix">

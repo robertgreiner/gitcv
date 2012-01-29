@@ -12,7 +12,6 @@ namespace gitcv.Controllers
     {
         public ActionResult Index()
         {
-            
             return View();         
         }
 
@@ -39,6 +38,7 @@ namespace gitcv.Controllers
             {
                 user = GithubService.GetUser(loginName);
                 repos = GithubService.GetRepositories(loginName);
+                repos.Sort((x, y) => String.CompareOrdinal(x.name, y.name));
             }
             catch
             {
