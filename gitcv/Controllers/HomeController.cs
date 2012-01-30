@@ -33,11 +33,13 @@ namespace gitcv.Controllers
         {
             var user = new GithubUser();
             var repos = new List<GithubRepository>();
+            var languages = new Dictionary<string, int>();
 
             try
             {
                 user = GithubService.GetUser(loginName);
                 repos = GithubService.GetRepositories(loginName);
+                languages = GithubService.GetLanguages(loginName);
                 repos.Sort((x, y) => String.CompareOrdinal(x.name, y.name));
             }
             catch
@@ -48,6 +50,7 @@ namespace gitcv.Controllers
             
             ViewBag.User = user;
             ViewBag.Repositories = repos;
+            ViewBag.Languages = languages;
 
             return View();
         }

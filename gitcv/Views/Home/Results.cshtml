@@ -1,9 +1,9 @@
 ﻿@using gitcv.Models.Types
-
 @{
     ViewBag.Title = "GitCV - Helping you hire the best developers.";
     GithubUser user = ViewBag.User;
     List<GithubRepository> repos = ViewBag.Repositories;
+    Dictionary<string, int> languages = ViewBag.Languages;
 }
 <div id="topNav">
     <div class="fixed">
@@ -74,13 +74,14 @@
                     <div class="body">
                         <div id="languageChart" style="width: 600px; height: 300px;">
                         </div>
-                        
                         <script type="text/javascript">
                             
                             var data = [];
                             
-                            for (var i = 0; i < 4; i++) {
-                                data[i] = { label: "Series" + (i + 1), data: Math.floor(Math.random() * 100) + 1 };
+                            var lang = @Html.Raw(Json.Encode(languages.Keys));
+                            var count = @Html.Raw(Json.Encode(languages.Values));
+                            for (var i = 0; i < lang.length; i++) {
+                                data[i] = { label: lang[i], data: count[i] };
                             }
 
                             $.plot($("#languageChart"), data,
@@ -91,11 +92,11 @@
                                             radius: 1,
                                             label: {
                                                 show: true,
-                                                radius: 2 / 3,
+                                                radius: 1,
                                                 formatter: function (label, series) {
-                                                    return '<div style="font-size:11px;text-align:center;padding:2px;color:white;">' + label + '<br/>' + Math.round(series.percent) + '%</div>';
+                                                    return '<div style="font-size:8pt;text-align:center;padding:2px;color:white;">'+label+'<br/>'+Math.round(series.percent)+'%</div>';
                                                 },
-                                                threshold: 0.1
+                                                background: { opacity: 0.8 }
                                             }
                                         }
                                     },
@@ -129,14 +130,19 @@
                         </p>
                     </div>
                 </div>
-                @{
-                    if (@user.hireable)
-                    {
-                    <blockquote>
-                        @user.name is currently seeking a new job. <a href="@user.html_url">Get in touch.</a>
-                    </blockquote>       
+                <blockquote>
+                    @{
+                        if (@user.hireable)
+                        {
+                        <p>@user.name is currently seeking a new job. <a href="@user.html_url">Get in touch.</a></p>
+                        }
+                        else
+                        {
+                        <p>@user.name is not seeking a new job at this time. <a href="@user.html_url">Get in
+                            touch.</a></p>
+                        }    
                     }
-                }
+                </blockquote>
             </div>
         </div>
         <div class="fix">
