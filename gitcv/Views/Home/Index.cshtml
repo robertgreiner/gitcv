@@ -3,17 +3,25 @@
 @{
     ViewBag.Title = "GitCV - Helping you hire the best developers.";
 }
+
+
 <div class="loginWrapper">
-    <div class="loginLogo">
-        <img src="@Url.Content("~/Content/images/loginLogo.png")" alt="" /></div>
+    
+    <div class="loginLogo" style="top: -110px; left: 82%;">
+        <img src="@Url.Content("~/Content/images/beta.png")" alt="beta logo"/>
+    </div>
+
+    <div class="loginLogo">        
+        <img src="@Url.Content("~/Content/images/loginLogo.png")" alt="" />
+    </div>
     @{
         if (!String.IsNullOrEmpty(ViewBag.ErrorMessage))
         {
-        <p style="margin-bottom: 20px; color: #FF0000;">
-            @ViewBag.ErrorMessage    
-        </p>
-        <div class="fix">
-        </div>
+            <p style="margin-bottom: 20px; color: #FF0000;">
+                @ViewBag.ErrorMessage    
+            </p>
+            <div class="fix">
+            </div>
         }
     }
     <div class="loginPanel">

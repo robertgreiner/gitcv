@@ -119,6 +119,7 @@
     <Content Include="Content\images\aNormal.png" />
     <Content Include="Content\images\arrow.gif" />
     <Content Include="Content\images\avatar.png" />
+    <Content Include="Content\images\beta.png" />
     <Content Include="Content\images\big.png" />
     <Content Include="Content\images\bodyBg.jpg" />
     <Content Include="Content\images\botArrow.png" />
