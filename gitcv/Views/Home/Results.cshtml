@@ -63,8 +63,8 @@
             <div class="fix">
             </div>
         </div>
-        <div class="widgets">
-            <div class="left">
+
+
                 <div class="widget">
                     <div class="head">
                         <h5 class="iChart8">
@@ -72,7 +72,7 @@
                         </h5>
                     </div>
                     <div class="body">
-                        <div id="languageChart" style="width: 600px; height: 300px;">
+                        <div id="languageChart" style="width: 700px; height: 300px;">
                         </div>
                         <script type="text/javascript">
                             
@@ -114,39 +114,9 @@
                         </script>
                     </div>
                 </div>
-            </div>
-            <div class="right">
-                <div class="widget">
-                    <div class="head">
-                        <h5 class="iCreate">
-                            Bio</h5>
-                    </div>
-                    <div class="body">
-                        <p>
-                            @{
-                                var md = new MarkdownSharp.Markdown();
-                                @Html.Raw(md.Transform(user.bio));
-                            }
-                        </p>
-                    </div>
-                </div>
-                <blockquote>
-                    @{
-                        if (@user.hireable)
-                        {
-                        <p>@user.name is currently seeking a new job. <a href="@user.html_url">Get in touch.</a></p>
-                        }
-                        else
-                        {
-                        <p>@user.name is not seeking a new job at this time. <a href="@user.html_url">Get in
-                            touch.</a></p>
-                        }    
-                    }
-                </blockquote>
-            </div>
-        </div>
-        <div class="fix">
-        </div>
+
+
+               
         <div class="widget">
             <div class="head">
                 <h5 class="iFrames">
@@ -173,23 +143,57 @@
                     @{                        
                         foreach (var repo in repos)
                         {
-                        <tr>
-                            <td>
-                                <a href="@repo.html_url" target="_blank">@repo.name</a>
-                            </td>
-                            <td>@repo.description
-                            </td>
-                            <td>@repo.language
-                            </td>
-                            <td>
-                                <a href="@repo.homepage" target="_blank">@repo.homepage</a>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>
+                                    <a href="@repo.html_url" target="_blank">@repo.name</a>
+                                </td>
+                                <td>@repo.description
+                                </td>
+                                <td>@repo.language
+                                </td>
+                                <td>
+                                    <a href="@repo.homepage" target="_blank">@repo.homepage</a>
+                                </td>
+                            </tr>
                         }
                     }
                 </tbody>
             </table>
         </div>
+        
+        
+         <div class="widget">
+                    <div class="head">
+                        <h5 class="iCreate">
+                            Bio</h5>
+                    </div>
+                    <div class="body">
+                        <p>
+                            @{
+                                var md = new MarkdownSharp.Markdown();
+                                @Html.Raw(md.Transform(user.bio));
+                            }
+                        </p>
+                    </div>
+                </div>
+                <blockquote>
+                    @{
+                        if (@user.hireable)
+                        {
+                        <p>@user.name is currently seeking a new job. <a href="@user.html_url">Get in touch.</a></p>
+                        }
+                        else
+                        {
+                        <p>@user.name is not seeking a new job at this time. <a href="@user.html_url">Get in
+                            touch.</a></p>
+                        }    
+                    }
+                </blockquote>
+
+
+        <div class="fix">
+        </div>
+
     </div>
 </div>
 <div class="fix">
