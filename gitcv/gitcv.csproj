@@ -1099,7 +1099,9 @@
     <Content Include="Content\js\wysiwyg\wysiwyg.image.js" />
     <Content Include="Content\js\wysiwyg\wysiwyg.link.js" />
     <Content Include="Content\js\wysiwyg\wysiwyg.table.js" />
-    <Content Include="Content\css\main.css" />
+    <Content Include="Content\css\main.css">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\css\prettyPhoto.css" />
     <Content Include="Content\css\reset.css" />
     <Content Include="Content\css\ui_custom.css" />
