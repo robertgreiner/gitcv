@@ -243,7 +243,7 @@ ul.sub li ul li { padding-left: 10px; }
 
 .stats { margin-top: 22px; }
 .stats ul {  }
-.stats ul li { display: block; float: left; margin-left: 40px; width: 151px; vertical-align: middle; }
+.stats ul li { display: block; float: left; margin-left: 40px; width: 215px; vertical-align: middle; }
 .stats ul li:first-child { margin: 0; }
 .stats ul li span { color: #424242; font-size: 16px; display: block; vertical-align: middle; white-space: normal; }
 .count { font-size: 26px; height: 40px; display: inline-block; float: left; line-height: 41px; padding: 0 10px; -moz-box-shadow: 0 1px 0 #fff; -webkit-box-shadow: 0 1px 0 #fff; box-shadow: 0 1px 0 #fff; margin-right: 10px; }
@@ -350,8 +350,8 @@ html ul.tabs li.activeTab a { color: #797979; }
 .widgets .left { float: left; width: 344px; }
 .widgets .right { float: right; width: 344px; }
 
-.content { float: left; width: 726px; padding-bottom: 80px; }
-.content .title { background: url(../images/darkBg.jpg) repeat-x; height: 36px; width: 726px; -moz-box-shadow: 0 1px 0 #fff; -webkit-box-shadow: 0 1px 0 #fff; box-shadow: 0 1px 0 #fff; }
+.content { float: left; width: 980px; padding-bottom: 80px; }
+.content .title { background: url(../images/darkBg.jpg) repeat-x; height: 36px; width: 980px; -moz-box-shadow: 0 1px 0 #fff; -webkit-box-shadow: 0 1px 0 #fff; box-shadow: 0 1px 0 #fff; }
 .content .title h5 { float: left; color: #fafafa; font-weight: normal; display: block; padding: 7px 15px; }
 
 
