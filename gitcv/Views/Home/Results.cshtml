@@ -215,19 +215,27 @@
                         </p>
                     </div>
                 </div>
-                <blockquote>
-                    @{
-                        if (@user.hireable)
-                        {
-                        <p>@user.name is currently seeking a new job. <a href="@user.html_url">Get in touch.</a></p>
-                        }
-                        else
-                        {
-                        <p>@user.name is not seeking a new job at this time. <a href="@user.html_url">Get in
-                            touch.</a></p>
-                        }    
-                    }
-                </blockquote>
+        <blockquote>
+            @{
+                if (@user.hireable)
+                {
+                    <span>@user.name is currently seeking a new job.</span>
+                }
+                else
+                {
+                    <span>@user.name is not seeking a new job at this time.</span>
+                }
+
+                if (string.IsNullOrEmpty(@user.email))
+                {
+                    <a href="@user.html_url">Get in touch.</a>
+                }
+                else
+                {
+                    <a href="mailto:@user.email">Get in touch.</a>                    
+                }
+            }
+        </blockquote>
 
 
         <div class="fix">
