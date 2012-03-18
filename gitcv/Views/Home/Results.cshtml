@@ -2,7 +2,8 @@
 @{
     ViewBag.Title = "GitCV - Helping you hire the best developers.";
     GithubUser user = ViewBag.User;
-    List<GithubRepository> repos = ViewBag.Repositories;
+    var originalRepositories = ViewBag.OriginalRepositories;
+    var forkedRepositories = ViewBag.ForkedRepositories;
     Dictionary<string, int> languages = ViewBag.Languages;
 }
 <div id="topNav">
@@ -57,58 +58,58 @@
         </div>
 
 
-                <div class="widget">
-                    <div class="head">
-                        <h5 class="iChart8">
-                            Languages
-                        </h5>
-                    </div>
-                    <div class="body">
-                        <div id="languageChart" style="width: 970px; height: 300px;">
-                        </div>
-                        <script type="text/javascript">
-                            
-                            var data = [];
-                            
-                            var lang = @Html.Raw(Json.Encode(languages.Keys));
-                            var count = @Html.Raw(Json.Encode(languages.Values));
-                            for (var i = 0; i < lang.length; i++) {
-                                data[i] = { label: lang[i], data: count[i] };
-                            }
-
-                            $.plot($("#languageChart"), data,
-                                {
-                                    series: {
-                                        pie: {
-                                            show: true,
-                                            radius: 1,
-                                            label: {
-                                                show: true,
-                                                radius: 1,
-                                                formatter: function (label, series) {
-                                                    return '<div style="font-size:8pt;text-align:center;padding:2px;color:white;">'+label+'<br/>'+Math.round(series.percent)+'%</div>';
-                                                },
-                                                background: { opacity: 0.8 }
-                                            }
-                                        }
-                                    },
-                                    legend: {
-                                        show: false
-                                    },
-                                    grid: {
-                                        hoverable: false,
-                                        clickable: true
-                                    }
-                                });
-                            $("#interactive").bind("plothover", pieHover);
-                            $("#interactive").bind("plotclick", pieClick);
-
-                        </script>
-                    </div>
+        <div class="widget">
+            <div class="head">
+                <h5 class="iChart8">
+                    Languages
+                </h5>
+            </div>
+            <div class="body">
+                <div id="languageChart" style="width: 970px; height: 300px;">
                 </div>
+                <script type="text/javascript">
+                            
+                    var data = [];
+                            
+                    var lang = @Html.Raw(Json.Encode(languages.Keys));
+                    var count = @Html.Raw(Json.Encode(languages.Values));
+                    for (var i = 0; i < lang.length; i++) {
+                        data[i] = { label: lang[i], data: count[i] };
+                    }
+
+                    $.plot($("#languageChart"), data,
+                        {
+                            series: {
+                                pie: {
+                                    show: true,
+                                    radius: 1,
+                                    label: {
+                                        show: true,
+                                        radius: 1,
+                                        formatter: function (label, series) {
+                                            return '<div style="font-size:8pt;text-align:center;padding:2px;color:white;">'+label+'<br/>'+Math.round(series.percent)+'%</div>';
+                                        },
+                                        background: { opacity: 0.8 }
+                                    }
+                                }
+                            },
+                            legend: {
+                                show: false
+                            },
+                            grid: {
+                                hoverable: false,
+                                clickable: true
+                            }
+                        });
+                    $("#interactive").bind("plothover", pieHover);
+                    $("#interactive").bind("plotclick", pieClick);
+
+                </script>
+            </div>
+        </div>
 
 
-               
+        
         <div class="widget">
             <div class="head">
                 <h5 class="iFrames">
@@ -133,7 +134,53 @@
                 </thead>
                 <tbody>
                     @{                        
-                        foreach (var repo in repos)
+                        foreach (var repo in originalRepositories)
+                        {
+                            <tr>
+                                <td>
+                                    <a href="@repo.html_url" target="_blank">@repo.name</a>
+                                </td>
+                                <td>@repo.description
+                                </td>
+                                <td>@repo.language
+                                </td>
+                                <td>
+                                    <a href="@repo.homepage" target="_blank">@repo.homepage</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        
+        
+               
+        <div class="widget">
+            <div class="head">
+                <h5 class="iFrames">
+                    Forked Repositories</h5>
+            </div>
+            <table cellpadding="0" cellspacing="0" width="100%" class="tableStatic resize">
+                <thead>
+                    <tr>
+                        <td>
+                            Name
+                        </td>
+                        <td>
+                            Description
+                        </td>
+                        <td>
+                            Language
+                        </td>
+                        <td>
+                            Homepage
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{                        
+                        foreach (var repo in forkedRepositories)
                         {
                             <tr>
                                 <td>

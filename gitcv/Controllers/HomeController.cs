@@ -32,14 +32,14 @@ namespace gitcv.Controllers
         public ActionResult Results(string loginName)
         {
             var user = new GithubUser();
-            var repos = new List<GithubRepository>();
             var languages = new Dictionary<string, int>();
+            var repos = new List<GithubRepository>();
 
             try
             {
                 user = GithubService.GetUser(loginName);
-                repos = GithubService.GetRepositories(loginName);
                 languages = GithubService.GetLanguages(loginName);
+                repos = GithubService.GetRepositories(loginName);
                 repos.Sort((x, y) => String.CompareOrdinal(x.name, y.name));
             }
             catch
@@ -50,6 +50,8 @@ namespace gitcv.Controllers
             
             ViewBag.User = user;
             ViewBag.Repositories = repos;
+            ViewBag.OriginalRepositories = repos.Where(r => r.fork == false);
+            ViewBag.ForkedRepositories = repos.Where(r => r.fork == true);
             ViewBag.Languages = languages;
 
             return View();
